@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Âmbar Nails — Studio de Nail Design</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="description" content="Âmbar Nails — Studio especializado em nail design de alta qualidade. Unhas perfeitas para mulheres que valorizam elegância e sofisticação."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+/* ══════════════════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:#F8F2EC;color:#1A0B0E;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%;height:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+
+/* ══════════════════════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════════════════════ */
+:root{
+  --gold:        #6D2932;
+  --gold-light:  #C7B7A3;
+  --gold-xlight: #E8D8C4;
+  --gold-pale:   #F5EDE8;
+  --gold-deep:   #561C24;
+  --dark:        #0D0608;
+  --dark2:       #1A0B0E;
+  --dark3:       #2E1219;
+  --mid:         #7A5A60;
+  --cream:       #F8F2EC;
+  --white:       #FFFFFF;
+  --wp:          #25D366;
+  --serif:       'Cormorant Garamond',Georgia,serif;
+  --display:     'Playfair Display',Georgia,serif;
+  --sans:        'Montserrat',sans-serif;
+  --ease-out:    cubic-bezier(.16,1,.3,1);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CURSOR GLOW (sutil)
+══════════════════════════════════════════════════════════ */
+.cursor-glow{
+  pointer-events:none;position:fixed;width:300px;height:300px;
+  border-radius:50%;background:radial-gradient(circle,rgba(109,41,50,.07) 0%,transparent 70%);
+  transform:translate(-50%,-50%);z-index:0;transition:opacity .3s;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ══════════════════════════════════════════════════════════
+   UTILITY
+══════════════════════════════════════════════════════════ */
+.wrap{max-width:1240px;margin:0 auto;padding:0 2.5rem}
+.tag{font-size:.62rem;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
+.serif-title{font-family:var(--serif);font-weight:300;line-height:1.1}
+.serif-title em{font-style:italic;color:var(--gold-light)}
+
+/* thin gold rule */
+.rule{display:flex;align-items:center;gap:.8rem;margin:1rem 0 1.6rem}
+.rule::before{content:'';flex:0 0 40px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.rule.center{justify-content:center}
+.rule.center::before{flex:0 0 30px}
+.rule.center::after{content:'';flex:0 0 30px;height:1px;background:linear-gradient(270deg,var(--gold),transparent)}
+.rule-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.reveal-right.visible{opacity:1;transform:none}
+
+/* ══════════════════════════════════════════════════════════
+   FLOATING WHATSAPP
+══════════════════════════════════════════════════════════ */
+.wa-float{
+  position:fixed;bottom:2rem;right:2rem;z-index:900;
+  display:flex;align-items:center;gap:.7rem;
+  background:var(--wp);color:#fff;padding:.85rem 1.5rem;
+  border-radius:60px;font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  box-shadow:0 8px 32px rgba(37,211,102,.4);
+  transition:transform .25s var(--ease-out),box-shadow .25s;
+  white-space:nowrap;
+}
+.wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(37,211,102,.5)}
+.wa-float svg{flex-shrink:0}
+
+/* pulse ring */
+.wa-float::before{
+  content:'';position:absolute;inset:-4px;border-radius:60px;
+  border:2px solid rgba(37,211,102,.4);
+  animation:pulse-ring 2.4s ease infinite;
+}
+@keyframes pulse-ring{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.18)}}
+
+/* ══════════════════════════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  padding:1.4rem 0;transition:padding .4s,background .4s,backdrop-filter .4s,box-shadow .4s;
+}
+.nav.scrolled{
+  background:rgba(10,6,7,.88);backdrop-filter:blur(18px);
+  padding:.9rem 0;box-shadow:0 1px 0 rgba(109,41,50,.15);
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--serif);font-size:1.55rem;font-weight:400;color:#fff;letter-spacing:.06em}
+.nav-logo span{color:var(--gold-light);font-style:italic}
+.nav-list{display:flex;gap:2.4rem;list-style:none}
+.nav-list a{font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s}
+.nav-list a:hover{color:var(--gold-light)}
+.nav-book{
+  border:1px solid rgba(109,41,50,.6);color:var(--gold-light) !important;
+  padding:.45rem 1.1rem;border-radius:1px;transition:background .2s,color .2s !important;
+}
+.nav-book:hover{background:var(--gold);color:#fff !important;border-color:var(--gold)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:22px;height:1.5px;background:#fff;transition:.3s;transform-origin:left}
+
+/* ══════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:100vh;display:grid;
+  grid-template-columns:1fr 1fr;
+  background:var(--dark);overflow:hidden;
+}
+
+/* left panel */
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:9rem 3rem 6rem 4rem;position:relative;z-index:2;
+}
+.hero-left::after{
+  content:'';position:absolute;right:0;top:10%;bottom:10%;
+  width:1px;background:linear-gradient(180deg,transparent,rgba(109,41,50,.3) 40%,rgba(109,41,50,.3) 60%,transparent);
+}
+
+.hero-eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem}
+.hero-eyebrow-line{width:28px;height:1px;background:var(--gold)}
+.hero-eyebrow span{font-size:.6rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold)}
+
+.hero-h1{
+  font-family:var(--serif);font-size:clamp(3.2rem,5.5vw,6rem);
+  font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.8rem;
+}
+.hero-h1 em{font-style:italic;color:var(--gold-light)}
+.hero-h1 .hero-h1-thin{font-weight:200;opacity:.7}
+
+.hero-sub{
+  font-size:.83rem;font-weight:300;color:rgba(255,255,255,.5);
+  line-height:1.9;max-width:400px;margin-bottom:3rem;
+}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+
+.btn-gold{
+  display:inline-flex;align-items:center;gap:.65rem;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-deep));
+  background-size:200%;background-position:0%;
+  color:#fff;padding:1rem 2rem;border-radius:1px;
+  font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  transition:background-position .4s,transform .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(109,41,50,.35);
+}
+.btn-gold:hover{background-position:100%;transform:translateY(-2px);box-shadow:0 10px 36px rgba(109,41,50,.5)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.65rem;
+  border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65);
+  padding:1rem 2rem;border-radius:1px;
+  font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  transition:border-color .2s,color .2s;
+}
+.btn-ghost:hover{border-color:var(--gold-light);color:var(--gold-light)}
+
+.hero-metrics{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.06)}
+.hero-metric{
+  flex:1;padding:1.4rem 0;border-right:1px solid rgba(255,255,255,.06);
+}
+.hero-metric:last-child{border-right:none}
+.hero-metric-n{
+  font-family:var(--serif);font-size:2.6rem;font-weight:300;
+  color:var(--gold-light);line-height:1;
+}
+.hero-metric-l{font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:.3rem}
+
+/* right panel — hero photo */
+.hero-right{
+  position:relative;overflow:hidden;
+}
+.hero-right-photo{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#2E1219 0%,#0D0608 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ── COMO USAR: coloque uma foto nobre aqui ──
+   <img src="fotos/hero.jpg" alt="Nail art premium" style="width:100%;height:100%;object-fit:cover;object-position:center top"/>
+   e remova o bloco .hero-photo-placeholder
+*/
+.hero-photo-placeholder{
+  display:flex;flex-direction:column;align-items:center;gap:1.2rem;
+  text-align:center;padding:2rem;
+}
+.hero-photo-placeholder svg{opacity:.18}
+.hero-photo-placeholder p{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(255,255,255,.2);max-width:220px;line-height:1.6}
+
+.hero-right::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to right,var(--dark) 0%,transparent 20%),
+             linear-gradient(to top,var(--dark) 0%,transparent 25%);
+}
+.hero-photo-badge{
+  position:absolute;bottom:3rem;left:3rem;z-index:2;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(12px);
+  border:1px solid rgba(109,41,50,.25);padding:1.2rem 1.6rem;
+}
+.hero-photo-badge-n{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--gold-light);line-height:1}
+.hero-photo-badge-l{font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+
+/* floating decorative diamonds */
+.hero-deco{position:absolute;z-index:3;pointer-events:none}
+.hero-deco-1{top:18%;right:8%;width:8px;height:8px;background:var(--gold);transform:rotate(45deg);opacity:.5;animation:float 6s ease-in-out infinite}
+.hero-deco-2{top:42%;right:18%;width:4px;height:4px;background:var(--gold-light);transform:rotate(45deg);opacity:.4;animation:float 8s ease-in-out infinite .5s}
+.hero-deco-3{bottom:25%;right:12%;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:.3;animation:float 7s ease-in-out infinite 1s}
+@keyframes float{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(-10px)}}
+
+/* hero bg pattern */
+.hero-pattern{
+  position:absolute;inset:0;z-index:0;
+  opacity:.025;
+  background-image:radial-gradient(circle,var(--gold-light) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MARQUEE STRIP
+══════════════════════════════════════════════════════════ */
+.marquee-strip{
+  background:var(--gold);padding:.95rem 0;overflow:hidden;
+  position:relative;z-index:10;
+}
+.marquee-track{
+  display:flex;gap:0;white-space:nowrap;
+  animation:marquee 28s linear infinite;
+}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:1.8rem;padding:0 2rem;
+  font-size:.62rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#fff;
+  flex-shrink:0;
+}
+.marquee-item::after{content:'✦';opacity:.5}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══════════════════════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════════════════════ */
+.about{padding:9rem 0;background:#fff;position:relative;overflow:hidden}
+.about::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,237,232,.8) 0%,transparent 70%);
+  pointer-events:none;
+}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+
+/* photo mosaic */
+.about-mosaic{
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:220px 180px 220px;
+  gap:10px;position:relative;
+}
+.about-mosaic-item{
+  position:relative;overflow:hidden;background:var(--gold-pale);
+}
+.about-mosaic-item:nth-child(1){grid-row:span 2;/* tall left */}
+.about-mosaic-item:nth-child(3){grid-row:span 2;/* tall right */}
+.about-mosaic-item:nth-child(2){/* small top-right */}
+.about-mosaic-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(109,41,50,.25) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.about-mosaic-item:hover::after{opacity:1}
+.about-mosaic-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out)}
+.about-mosaic-item:hover img{transform:scale(1.06)}
+
+/* ── FOTO PLACEHOLDER ── */
+.photo-ph{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.7rem;
+  background:linear-gradient(135deg,var(--gold-pale),#E8D8C4);
+}
+.photo-ph-icon{color:var(--gold);opacity:.35}
+.photo-ph-txt{font-family:var(--serif);font-style:italic;font-size:.82rem;color:var(--gold);opacity:.5;text-align:center;padding:0 1rem}
+
+/* gold accent corner */
+.about-mosaic::before{
+  content:'';position:absolute;bottom:-16px;right:-16px;
+  width:80px;height:80px;
+  border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);
+  z-index:1;pointer-events:none;
+}
+.about-mosaic::after{
+  content:'';position:absolute;top:-16px;left:-16px;
+  width:80px;height:80px;
+  border-left:2px solid rgba(109,41,50,.3);border-top:2px solid rgba(109,41,50,.3);
+  z-index:1;pointer-events:none;
+}
+
+.about-text .tag{margin-bottom:.5rem;display:block}
+.about-text h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin-bottom:1.6rem}
+.about-text h2 em{font-style:italic;color:var(--gold)}
+.about-text p{font-size:.84rem;font-weight:300;color:var(--mid);line-height:1.95;margin-bottom:1rem}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.4rem}
+.about-pillar{
+  display:flex;gap:.75rem;align-items:flex-start;
+  padding:1rem;border:1px solid rgba(109,41,50,.12);
+  transition:border-color .3s,background .3s;
+}
+.about-pillar:hover{border-color:rgba(109,41,50,.35);background:var(--gold-pale)}
+.about-pillar-icon{
+  width:32px;height:32px;background:var(--gold-pale);border:1px solid rgba(109,41,50,.3);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:.9rem;
+}
+.about-pillar-txt{font-size:.75rem;font-weight:600;color:var(--dark2);line-height:1.4}
+.about-pillar-txt span{display:block;font-size:.68rem;font-weight:300;color:var(--mid);margin-top:.1rem}
+
+/* ══════════════════════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════════════════════ */
+.services{padding:9rem 0;background:var(--cream);position:relative}
+.services-head{text-align:center;max-width:560px;margin:0 auto 5rem}
+.services-head h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;margin-bottom:1rem}
+.services-head h2 em{font-style:italic;color:var(--gold)}
+.services-head p{font-size:.82rem;font-weight:300;color:var(--mid);line-height:1.9}
+
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid rgba(109,41,50,.12);
+}
+.svc{
+  padding:2.8rem 2.4rem;border-right:1px solid rgba(109,41,50,.12);
+  border-bottom:1px solid rgba(109,41,50,.12);
+  position:relative;overflow:hidden;background:#fff;
+  transition:background .35s;
+}
+.svc:nth-child(3n){border-right:none}
+.svc:nth-child(4),.svc:nth-child(5),.svc:nth-child(6){border-bottom:none}
+
+.svc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold-light),var(--gold),var(--gold-deep));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease-out);
+}
+.svc:hover::before{transform:scaleX(1)}
+.svc:hover{background:var(--gold-pale)}
+
+.svc-n{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold-xlight);line-height:1;margin-bottom:.8rem}
+.svc-name{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--dark2);margin-bottom:.6rem}
+.svc-desc{font-size:.77rem;font-weight:300;color:var(--mid);line-height:1.75;margin-bottom:1.4rem}
+.svc-price{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--gold)}
+.svc-cta{
+  display:inline-flex;align-items:center;gap:.4rem;margin-top:1.4rem;
+  font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);border-bottom:1px solid rgba(109,41,50,.3);padding-bottom:1px;
+  transition:gap .2s,border-color .2s;
+}
+.svc-cta:hover{gap:.7rem;border-color:var(--gold)}
+
+/* ══════════════════════════════════════════════════════════
+   VERTICAL CAROUSEL — PORTFOLIO
+══════════════════════════════════════════════════════════ */
+.carousel-section{padding:9rem 0;background:var(--dark2);position:relative;overflow:hidden}
+.carousel-section .wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+
+.carousel-info{padding-top:3rem;position:sticky;top:8rem}
+.carousel-info .tag{color:var(--gold)}
+.carousel-info h2{
+  font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);
+  font-weight:300;color:#fff;margin:1.2rem 0 1.4rem;line-height:1.1;
+}
+.carousel-info h2 em{font-style:italic;color:var(--gold-light)}
+.carousel-info p{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:2.4rem}
+
+/* counter */
+.carousel-counter{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.carousel-current{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold-light);line-height:1}
+.carousel-sep{width:40px;height:1px;background:rgba(255,255,255,.15)}
+.carousel-total{font-family:var(--serif);font-size:1.5rem;font-weight:300;color:rgba(255,255,255,.2)}
+
+/* nav arrows */
+.carousel-nav{display:flex;gap:.6rem}
+.carousel-btn{
+  width:46px;height:46px;border:1px solid rgba(109,41,50,.3);background:none;
+  color:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,color .2s;border-radius:1px;
+}
+.carousel-btn:hover{background:rgba(109,41,50,.15);border-color:var(--gold);color:var(--gold-light)}
+.carousel-btn:disabled{opacity:.25;cursor:default}
+
+/* vertical track */
+.carousel-track-wrap{
+  height:620px;overflow:hidden;position:relative;
+  border:1px solid rgba(109,41,50,.12);
+}
+.carousel-track-wrap::before,
+.carousel-track-wrap::after{
+  content:'';position:absolute;left:0;right:0;height:100px;z-index:2;pointer-events:none;
+}
+.carousel-track-wrap::before{top:0;background:linear-gradient(180deg,var(--dark2),transparent)}
+.carousel-track-wrap::after{bottom:0;background:linear-gradient(0deg,var(--dark2),transparent)}
+
+.carousel-track{
+  display:flex;flex-direction:column;gap:10px;
+  transition:transform .75s var(--ease-out);
+}
+
+.carousel-slide{
+  flex:0 0 420px;position:relative;overflow:hidden;
+  background:var(--dark3);cursor:pointer;
+}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out)}
+.carousel-slide:hover img{transform:scale(1.04)}
+.carousel-slide-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,6,7,.75) 0%,transparent 50%);
+  opacity:1;
+}
+.carousel-slide-label{
+  position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;z-index:1;
+  font-family:var(--serif);font-style:italic;font-size:1rem;color:#fff;
+}
+
+/* slide photo placeholder */
+.slide-ph{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.8rem;
+  background:linear-gradient(135deg,#2E1219,#1A0B0E);
+}
+.slide-ph svg{opacity:.2;color:var(--gold)}
+.slide-ph span{font-family:var(--serif);font-style:italic;font-size:.82rem;color:rgba(109,41,50,.3)}
+
+/* dot progress */
+.carousel-dots{display:flex;flex-direction:column;gap:.5rem;align-items:center;margin-top:1.4rem}
+.carousel-dot{
+  width:3px;height:18px;background:rgba(255,255,255,.12);border-radius:2px;
+  transition:background .3s,height .3s;cursor:pointer;
+}
+.carousel-dot.active{background:var(--gold);height:28px}
+
+/* ══════════════════════════════════════════════════════════
+   PACKAGES / PROMOÇÕES
+══════════════════════════════════════════════════════════ */
+.packages{padding:9rem 0;background:#fff}
+.packages-head{text-align:center;max-width:560px;margin:0 auto 4rem}
+.packages-head h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300}
+.packages-head h2 em{font-style:italic;color:var(--gold)}
+.packages-head p{font-size:.82rem;font-weight:300;color:var(--mid);line-height:1.8;margin-top:.8rem}
+
+.packages-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.8rem;
+}
+.pkg-card{
+  position:relative;
+  background:var(--cream);
+  border:1px solid rgba(109,41,50,.1);
+  padding:2.8rem 2rem 2.2rem;
+  transition:transform .3s var(--ease-out),box-shadow .3s;
+  display:flex;flex-direction:column;
+}
+.pkg-list{flex:1}
+.pkg-btn{margin-top:auto}
+.pkg-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(109,41,50,.1)}
+.pkg-card.featured{
+  background:var(--dark2);
+  border-color:var(--gold);
+}
+.pkg-card.featured *{color:#fff}
+.pkg-card.featured .pkg-price{color:var(--gold-light)}
+.pkg-card.featured .pkg-badge{display:block}
+.pkg-card.featured .pkg-list li::before{color:var(--gold-light)}
+.pkg-card.featured .pkg-btn{background:var(--gold);color:#fff;border-color:var(--gold)}
+.pkg-card.featured .pkg-btn:hover{background:var(--gold-light)}
+
+.pkg-badge{
+  display:none;
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#fff;
+  font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  padding:.4rem 1.2rem;
+}
+.pkg-icon{
+  width:48px;height:48px;margin:0 auto 1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(109,41,50,.15);
+  color:var(--gold);
+}
+.pkg-card.featured .pkg-icon{border-color:rgba(109,41,50,.4)}
+.pkg-name{
+  font-family:var(--serif);font-size:1.3rem;font-weight:400;
+  text-align:center;margin-bottom:.3rem;color:var(--dark);
+}
+.pkg-desc{
+  font-size:.75rem;font-weight:300;color:var(--mid);
+  text-align:center;margin-bottom:1.6rem;line-height:1.6;
+}
+.pkg-card.featured .pkg-desc{color:rgba(255,255,255,.5)}
+.pkg-price{
+  text-align:center;margin-bottom:1.6rem;
+}
+.pkg-price span{
+  font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--gold);
+}
+.pkg-price small{
+  font-size:.75rem;font-weight:300;color:var(--mid);display:block;margin-top:.2rem;
+}
+.pkg-card.featured .pkg-price small{color:rgba(255,255,255,.4)}
+.pkg-list{
+  list-style:none;margin-bottom:2rem;
+}
+.pkg-list li{
+  font-size:.78rem;font-weight:300;color:var(--dark);
+  padding:.45rem 0;border-bottom:1px solid rgba(109,41,50,.06);
+  display:flex;align-items:center;gap:.6rem;
+}
+.pkg-list li::before{
+  content:'✦';font-size:.55rem;color:var(--gold);flex-shrink:0;
+}
+.pkg-card.featured .pkg-list li{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.8)}
+.pkg-btn{
+  display:block;width:100%;text-align:center;
+  padding:.9rem;
+  font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--gold);
+  background:transparent;cursor:pointer;
+  transition:background .3s,color .3s;
+}
+.pkg-btn:hover{background:var(--gold);color:#fff}
+
+@media(max-width:900px){
+  .packages-grid{grid-template-columns:1fr}
+  .pkg-card.featured{order:-1}
+}
+
+/* ══════════════════════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════════════════════ */
+.testimonials{padding:9rem 0;background:var(--cream);position:relative;overflow:hidden}
+.testimonials::after{
+  content:'"';
+  font-family:var(--serif);font-size:28rem;font-weight:300;
+  color:rgba(109,41,50,.04);line-height:1;
+  position:absolute;top:-3rem;left:-2rem;pointer-events:none;select:none;
+}
+.testimonials-head{text-align:center;max-width:520px;margin:0 auto 4.5rem}
+.testimonials-head h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300}
+.testimonials-head h2 em{font-style:italic;color:var(--gold)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;position:relative;z-index:1}
+.testi{
+  background:#fff;padding:2.5rem;
+  border-top:1px solid rgba(109,41,50,.2);
+  position:relative;transition:transform .3s,box-shadow .3s;
+}
+.testi::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-light),transparent);
+  transform:scaleX(0);transition:transform .4s;
+}
+.testi:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.testi:hover::before{transform:scaleX(1)}
+.testi-q{font-family:var(--serif);font-size:3.5rem;color:var(--gold-xlight);line-height:.4;margin-bottom:1.2rem}
+.testi-text{font-family:var(--serif);font-style:italic;font-size:.98rem;font-weight:300;color:var(--mid);line-height:1.85;margin-bottom:1.8rem}
+.testi-author{display:flex;align-items:center;gap:.8rem}
+.testi-avatar{
+  width:42px;height:42px;border-radius:50%;overflow:hidden;
+  background:var(--gold-pale);border:1.5px solid var(--gold-light);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.2rem;color:var(--gold);flex-shrink:0;
+}
+.testi-name{font-size:.75rem;font-weight:600;color:var(--dark2)}
+.testi-stars{color:var(--gold);font-size:.7rem;letter-spacing:.1em;margin-top:1px}
+
+/* ══════════════════════════════════════════════════════════
+   BOOKING CTA
+══════════════════════════════════════════════════════════ */
+.booking{
+  padding:9rem 0;
+  background:linear-gradient(135deg,var(--dark) 0%,var(--dark3) 55%,#3D1220 100%);
+  position:relative;overflow:hidden;text-align:center;
+}
+.booking::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(109,41,50,.07),transparent);
+}
+.booking-deco-l,.booking-deco-r{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:180px;height:180px;border:1px solid rgba(109,41,50,.08);
+  border-radius:50%;pointer-events:none;
+}
+.booking-deco-l{left:-90px}
+.booking-deco-r{right:-90px}
+.booking-deco-l::after,.booking-deco-r::after{
+  content:'';position:absolute;inset:20px;border:1px solid rgba(109,41,50,.08);border-radius:50%;
+}
+.booking .wrap{position:relative;z-index:1}
+.booking-eye{font-size:.62rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.booking h2{
+  font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);
+  font-weight:300;color:#fff;line-height:1.08;margin-bottom:1.5rem;
+}
+.booking h2 em{font-style:italic;color:var(--gold-light)}
+.booking-sub{font-size:.84rem;font-weight:300;color:rgba(255,255,255,.4);max-width:420px;margin:0 auto 3rem;line-height:1.9}
+.booking-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-wp{
+  display:inline-flex;align-items:center;gap:.75rem;
+  background:var(--wp);color:#fff;padding:1.1rem 2.2rem;border-radius:1px;
+  font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(37,211,102,.35);
+}
+.btn-wp:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(37,211,102,.5)}
+
+/* ══════════════════════════════════════════════════════════
+   LOCATION
+══════════════════════════════════════════════════════════ */
+.location{padding:9rem 0;background:#fff}
+.location .wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start}
+.location-info .tag{display:block;margin-bottom:.5rem}
+.location-info h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin-bottom:1.2rem}
+.location-info h2 em{font-style:italic;color:var(--gold)}
+.location-info p{font-size:.83rem;font-weight:300;color:var(--mid);line-height:1.9;margin-bottom:2rem}
+.location-details{display:flex;flex-direction:column;gap:1.2rem}
+.loc-row{display:flex;gap:.9rem;align-items:flex-start}
+.loc-icon{
+  width:38px;height:38px;background:var(--gold-pale);border:1px solid rgba(109,41,50,.25);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);
+}
+.loc-txt{font-size:.8rem;font-weight:500;color:var(--dark2)}
+.loc-txt span{display:block;font-size:.72rem;font-weight:300;color:var(--mid);margin-top:.15rem}
+.map-frame{position:relative;border:1px solid rgba(109,41,50,.15);overflow:hidden}
+.map-frame::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  box-shadow:inset 0 0 0 4px rgba(245,237,232,.6);
+}
+.map-frame iframe{display:block;width:100%;height:480px;border:0;filter:saturate(.85) contrast(1.05)}
+
+/* ══════════════════════════════════════════════════════════
+   SOCIAL BAR
+══════════════════════════════════════════════════════════ */
+.social-bar{background:var(--gold);padding:1.6rem 0}
+.social-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.social-bar-msg{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:#fff}
+.social-bar-links{display:flex;gap:.75rem}
+.social-link-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+  color:#fff;padding:.5rem 1.2rem;border-radius:1px;
+  font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  transition:background .2s;
+}
+.social-link-btn:hover{background:rgba(255,255,255,.28)}
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════ */
+footer{background:var(--dark);padding:5rem 0 2.5rem;text-align:center}
+.footer-logo{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:#fff;letter-spacing:.08em}
+.footer-logo span{color:var(--gold-light);font-style:italic}
+.footer-tag{font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:.3rem}
+.footer-line{width:50px;height:1px;background:rgba(109,41,50,.25);margin:2rem auto}
+.footer-social{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2.5rem}
+.footer-s-btn{
+  width:38px;height:38px;border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.4);border-radius:1px;
+  transition:border-color .2s,color .2s;
+}
+.footer-s-btn:hover{border-color:var(--gold);color:var(--gold-light)}
+.footer-copy{font-size:.68rem;color:rgba(255,255,255,.18);letter-spacing:.05em}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:9rem 2.5rem 5rem}
+  .about .wrap{grid-template-columns:1fr}
+  .about-mosaic{grid-template-rows:220px 180px;grid-template-columns:1fr 1fr}
+  .about-mosaic-item:nth-child(1){grid-row:span 1}
+  .about-mosaic-item:nth-child(3){grid-row:span 1}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .svc:nth-child(2n){border-right:none}
+  .svc:nth-child(3n){border-right:1px solid rgba(109,41,50,.12)}
+  .svc:nth-child(5),.svc:nth-child(6){border-bottom:none}
+  .svc:nth-child(4){border-bottom:1px solid rgba(109,41,50,.12)}
+  .carousel-section .wrap{grid-template-columns:1fr}
+  .carousel-info{position:static}
+  .gallery-masonry{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .g-item:nth-child(1){grid-column:span 1;grid-row:span 1}
+  .g-item:nth-child(4),.g-item:nth-child(7){grid-column:span 1}
+  .testi-grid{grid-template-columns:1fr}
+  .location .wrap{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-list{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(10,6,7,.97);flex-direction:column;padding:1.5rem 2rem;gap:1.2rem}
+  .nav-list.open{display:flex}
+  .nav-burger{display:flex}
+  .services-grid{grid-template-columns:1fr}
+  .svc:nth-child(n){border-right:none}
+  .svc:last-child{border-bottom:none}
+  .testi-grid{max-width:460px;margin:0 auto}
+  .social-bar .wrap{justify-content:center}
+  .about-pillars{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-metrics{flex-direction:column}
+  .hero-metric{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);padding:.9rem 0}
+  .gallery-masonry{grid-template-columns:1fr}
+  .g-item:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .booking-actions{flex-direction:column;align-items:center}
+  .wrap{padding:0 1.4rem}
+}
+  </style>
+</head>
+<body>
+
+<!-- cursor glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ══ WHATSAPP FLOAT ══════════════════════════════════════════════ -->
+<!-- CONFIGURAÇÃO: troque 5521979834983 pelo seu número -->
+<a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20no%20Âmbar%20Nails."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+  Agendar Agora
+</a>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="nav-logo">Âmbar <span>Nails</span></a>
+    <ul class="nav-list" id="navList">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#pacotes">Pacotes</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#localizacao">Localização</a></li>
+      <!-- CONFIGURAÇÃO: troque pelo seu número -->
+      <li><a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20no%20Âmbar%20Nails." target="_blank" rel="noopener" class="nav-book">Agendar</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-pattern"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      <span>Studio de Nail Design</span>
+    </div>
+    <h1 class="hero-h1">
+      Unhas que<br>
+      <em>contam sua</em><br>
+      <span class="hero-h1-thin">história</span>
+    </h1>
+    <p class="hero-sub">
+      No Âmbar Nails, cada detalhe é trabalhado com precisão artística para realçar sua beleza com sofisticação, cuidado e os produtos mais selecionados do mercado.
+    </p>
+    <div class="hero-btns">
+      <!-- CONFIGURAÇÃO: troque pelo seu número -->
+      <a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20no%20Âmbar%20Nails." target="_blank" rel="noopener" class="btn-gold">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#servicos" class="btn-ghost">
+        Conhecer serviços
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+    <div class="hero-metrics">
+      <div class="hero-metric">
+        <div class="hero-metric-n">5+</div>
+        <div class="hero-metric-l">Anos de experiência</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-n">2k+</div>
+        <div class="hero-metric-l">Clientes atendidas</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-n">100%</div>
+        <div class="hero-metric-l">Satisfação garantida</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOTO HERO ──────────────────────────────────────────────────────
+    Para adicionar sua foto principal:
+    1. Coloque o arquivo em:  fotos/hero.jpg
+    2. Substitua o bloco .hero-photo-placeholder pela tag:
+       <img src="fotos/hero.jpg" alt="Nail art premium" style="width:100%;height:100%;object-fit:cover;object-position:center top"/>
+  -->
+  <div class="hero-right">
+    <div class="hero-right-photo">
+      <div class="hero-photo-placeholder">
+        <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <img src="modelo.png" alt="Foto principal" />
+      </div>
+    </div>
+    <div class="hero-photo-badge">
+      <div class="hero-photo-badge-n">Nº 1</div>
+      <div class="hero-photo-badge-l">em nail design</div>
+    </div>
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <div class="hero-deco hero-deco-3"></div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ═════════════════════════════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- duplicado para loop contínuo -->
+    <span class="marquee-item">Gel & Acrílico</span>
+    <span class="marquee-item">Nail Art Exclusiva</span>
+    <span class="marquee-item">Manutenção</span>
+    <span class="marquee-item">Esmaltação em Gel</span>
+    <span class="marquee-item">Blindagem</span>
+    <span class="marquee-item">Pedicure Spa</span>
+    <span class="marquee-item">Studio Premium</span>
+    <span class="marquee-item">Produtos Selecionados</span>
+    <span class="marquee-item">Gel & Acrílico</span>
+    <span class="marquee-item">Nail Art Exclusiva</span>
+    <span class="marquee-item">Manutenção</span>
+    <span class="marquee-item">Esmaltação em Gel</span>
+    <span class="marquee-item">Blindagem</span>
+    <span class="marquee-item">Pedicure Spa</span>
+    <span class="marquee-item">Studio Premium</span>
+    <span class="marquee-item">Produtos Selecionados</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ═══════════════════════════════════════════════════════ -->
+<section class="about" id="sobre">
+  <div class="wrap">
+
+    <!-- MOSAICO DE FOTOS ──────────────────────────────────────────────
+      Para adicionar fotos ao mosaico:
+      Substitua cada <div class="photo-ph"> pela sua imagem:
+      <img src="fotos/studio-1.jpg" alt="Studio Âmbar Nails"/>
+    -->
+    <div class="about-mosaic reveal-left">
+      <div class="about-mosaic-item">
+        <img src="studio2.png" alt="Studio Âmbar Nails"/>
+      </div>
+      <div class="about-mosaic-item">
+        <img src="studio1.png" alt="Studio Âmbar Nails"/>
+      </div>
+      <div class="about-mosaic-item">
+        <img src="studio3.png" alt="Studio Âmbar Nails"/>
+      </div>
+    </div>
+
+    <div class="about-text reveal-right">
+      <span class="tag">Sobre o Studio</span>
+      <div class="rule"><span class="rule-dot"></span></div>
+      <h2>Onde a arte<br>encontra <em>a precisão</em></h2>
+      <p>O Âmbar Nails nasceu da paixão por transformar unhas em verdadeiras obras de arte. Com uma abordagem que une técnica refinada, estética contemporânea e amor pelo que faz, criamos experiências únicas.</p>
+      <p>Trabalhamos com os melhores produtos do mercado, técnicas constantemente atualizadas e um ambiente sofisticado — pensado para que você se sinta especial do início ao fim.</p>
+      <div class="about-pillars">
+        <div class="about-pillar">
+          <div class="about-pillar-icon">✦</div>
+          <div class="about-pillar-txt">Produtos premium<span>Marcas selecionadas e certificadas</span></div>
+        </div>
+        <div class="about-pillar">
+          <div class="about-pillar-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="about-pillar-txt">Esterilização garantida<span>Protocolo rigoroso de higiene</span></div>
+        </div>
+        <div class="about-pillar">
+          <div class="about-pillar-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="about-pillar-txt">Horários flexíveis<span>Segunda a sábado, com hora marcada</span></div>
+        </div>
+        <div class="about-pillar">
+          <div class="about-pillar-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+          </div>
+          <div class="about-pillar-txt">Atendimento exclusivo<span>Consultoria de estilo incluída</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SERVICES ════════════════════════════════════════════════════ -->
+<section class="services" id="servicos">
+  <div class="wrap">
+    <div class="services-head reveal">
+      <span class="tag">O que oferecemos</span>
+      <div class="rule center"><span class="rule-dot"></span></div>
+      <h2>Serviços pensados<br>para <em>realçar você</em></h2>
+      <p>Cada serviço é executado com dedicação, técnica especializada e produtos de alta performance — para resultados que impressionam e duram.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal">
+        <div class="svc-n">01</div>
+        <h3 class="svc-name">Gel & Acrílico</h3>
+        <p class="svc-desc">Alongamento com gel ou acrílico para unhas resistentes, perfeitas e duradouras. Formatos e tamanhos personalizados conforme seu estilo.</p>
+        <div class="svc-price">A partir de R$ 120</div>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Quero%20saber%20mais%20sobre%20Gel%20%26%20Acrílico." target="_blank" rel="noopener" class="svc-cta">Agendar →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">02</div>
+        <h3 class="svc-name">Nail Art</h3>
+        <p class="svc-desc">Designs exclusivos e personalizados — desde o minimalismo sofisticado até composições detalhadas com pedras, folhas e efeitos únicos.</p>
+        <div class="svc-price">A partir de R$ 80</div>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Quero%20saber%20mais%20sobre%20Nail%20Art." target="_blank" rel="noopener" class="svc-cta">Agendar →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">03</div>
+        <h3 class="svc-name">Manutenção</h3>
+        <p class="svc-desc">Reposição e correção para manter suas unhas sempre perfeitas. Preenchimento de gel e acrílico com acabamento impecável.</p>
+        <div class="svc-price">A partir de R$ 90</div>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Quero%20saber%20mais%20sobre%20Manutenção." target="_blank" rel="noopener" class="svc-cta">Agendar →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">04</div>
+        <h3 class="svc-name">Esmaltação em Gel</h3>
+        <p class="svc-desc">Esmaltação com gel UV de longa duração. Brilho intenso e cor vibrante por semanas, sem lascar nem perder o acabamento.</p>
+        <div class="svc-price">A partir de R$ 65</div>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Quero%20saber%20mais%20sobre%20Esmaltação%20em%20Gel." target="_blank" rel="noopener" class="svc-cta">Agendar →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">05</div>
+        <h3 class="svc-name">Blindagem</h3>
+        <p class="svc-desc">Proteção profissional para unhas naturais. Fortalece, protege e alonga sem alterar a espessura, ideal para unhas saudáveis.</p>
+        <div class="svc-price">A partir de R$ 75</div>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Quero%20saber%20mais%20sobre%20Blindagem." target="_blank" rel="noopener" class="svc-cta">Agendar →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">06</div>
+        <h3 class="svc-name">Pedicure Spa</h3>
+        <p class="svc-desc">Tratamento completo para os pés com hidratação, esfoliação e esmaltação. Do relaxamento ao resultado perfeito, em um só momento.</p>
+        <div class="svc-price">A partir de R$ 85</div>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Quero%20saber%20mais%20sobre%20Pedicure%20Spa." target="_blank" rel="noopener" class="svc-cta">Agendar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VERTICAL CAROUSEL ════════════════════════════════════════════ -->
+<section class="carousel-section" id="portfolio">
+  <div class="wrap">
+
+    <div class="carousel-info reveal-left">
+      <span class="tag">Portfolio</span>
+      <div class="rule"><span class="rule-dot"></span></div>
+      <h2>Cada nail arte,<br><em>uma obra única</em></h2>
+      <p>Um recorte do nosso trabalho. Cada nail arte nasce de uma conversa, um gosto, uma personalidade. Adicione suas melhores fotos para mostrar sua arte.</p>
+    </div>
+
+    <!-- CARROSSEL VERTICAL ──────────────────────────────────────────
+      Para adicionar fotos:
+      1. Crie pasta fotos/ ao lado do index.html
+      2. Substitua cada <div class="slide-ph"> por:
+         <img src="fotos/nome.jpg" alt="descrição"/>
+         e remova o data-label se quiser
+    -->
+    <div class="carousel-track-wrap reveal-right">
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="carousel-slide" data-label="Nail Art — Minimalismo">
+          <img src="unha1.jpg" alt="Nail Art — Minimalismo"/>
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-slide-label">Nail Art — Minimalismo</div>
+        </div>
+
+        <div class="carousel-slide" data-label="Gel Francês — Clássico">
+          <img src="unha2.jpg" alt="Gel Francês — Clássico"/>
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-slide-label">Gel Francês — Clássico</div>
+        </div>
+
+        <div class="carousel-slide" data-label="Nail Art — Floral">
+          <img src="unha3.jpg" alt="Nail Art — Floral"/>
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-slide-label">Nail Art — Floral</div>
+        </div>
+
+        <div class="carousel-slide" data-label="Acrílico — Stiletto">
+          <img src="unha4.jpg" alt="Acrílico — Stiletto"/>
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-slide-label">Acrílico — Stiletto</div>
+        </div>
+
+        <div class="carousel-slide" data-label="Blindagem Natural">
+          <img src="unha5.jpg" alt="Blindagem Natural"/>
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-slide-label">Blindagem Natural</div>
+        </div>
+
+        <div class="carousel-slide" data-label="Nail Art — Geométrico">
+          <img src="unha6.jpg" alt="Nail Art — Geométrico"/>
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-slide-label">Nail Art — Geométrico</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PACOTES / PROMOÇÕES ═══════════════════════════════════════════ -->
+<section class="packages" id="pacotes">
+  <div class="wrap">
+    <div class="packages-head reveal">
+      <span class="tag">Pacotes</span>
+      <div class="rule center"><span class="rule-dot"></span></div>
+      <h2>Escolha o pacote <em>ideal para você</em></h2>
+      <p>Combinações exclusivas pensadas para valorizar suas unhas com o melhor custo-benefício. Agende e garanta seu horário.</p>
+    </div>
+
+    <div class="packages-grid">
+
+      <!-- PACOTE 1 — Essencial -->
+      <div class="pkg-card reveal">
+        <div class="pkg-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5.636 5.636l12.728 12.728M3 12h18M5.636 18.364L18.364 5.636"/></svg>
+        </div>
+        <div class="pkg-name">Essencial</div>
+        <div class="pkg-desc">Perfeito para quem busca unhas impecáveis com praticidade</div>
+        <div class="pkg-price">
+          <span>R$ 89</span>
+          <small>por sessão</small>
+        </div>
+        <ul class="pkg-list">
+          <li>Esmaltação em gel</li>
+          <li>Cutilagem completa</li>
+          <li>Hidratação das mãos</li>
+          <li>Acabamento premium</li>
+        </ul>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20o%20pacote%20Essencial." target="_blank" rel="noopener" class="pkg-btn">Agendar agora</a>
+      </div>
+
+      <!-- PACOTE 2 — Glamour (destaque) -->
+      <div class="pkg-card featured reveal">
+        <div class="pkg-badge">Mais escolhido</div>
+        <div class="pkg-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="pkg-name">Glamour</div>
+        <div class="pkg-desc">O combo completo para quem quer arrasar em qualquer ocasião</div>
+        <div class="pkg-price">
+          <span>R$ 149</span>
+          <small>por sessão</small>
+        </div>
+        <ul class="pkg-list">
+          <li>Alongamento em gel ou acrílico</li>
+          <li>Nail art personalizada</li>
+          <li>Cutilagem e spa das mãos</li>
+          <li>Pedrarias e decorações inclusas</li>
+          <li>Manutenção com 15% off</li>
+        </ul>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20o%20pacote%20Glamour." target="_blank" rel="noopener" class="pkg-btn">Agendar agora</a>
+      </div>
+
+      <!-- PACOTE 3 — Noiva -->
+      <div class="pkg-card reveal">
+        <div class="pkg-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <div class="pkg-name">Noiva</div>
+        <div class="pkg-desc">Dia especial merece unhas perfeitas — para você e suas madrinhas</div>
+        <div class="pkg-price">
+          <span>R$ 199</span>
+          <small>por sessão</small>
+        </div>
+        <ul class="pkg-list">
+          <li>Teste prévio de nail art</li>
+          <li>Alongamento premium</li>
+          <li>Decoração exclusiva para noivas</li>
+          <li>Spa completo das mãos</li>
+          <li>10% off para madrinhas</li>
+        </ul>
+        <a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20o%20pacote%20Noiva." target="_blank" rel="noopener" class="pkg-btn">Agendar agora</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════════════════════════ -->
+<section class="testimonials" id="depoimentos">
+  <div class="wrap">
+    <div class="testimonials-head reveal">
+      <span class="tag">Depoimentos</span>
+      <div class="rule center"><span class="rule-dot"></span></div>
+      <h2>O que nossas<br>clientes <em>dizem</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="testi-q">"</div>
+        <p class="testi-text">Meu Deus, que trabalho impecável! Saí do studio completamente apaixonada. As unhas ficaram exatamente como eu queria, profissional e delicado ao mesmo tempo.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Ana Paula M.</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-q">"</div>
+        <p class="testi-text">Ambiente lindo, atendimento super cuidadoso e o resultado superou todas as minhas expectativas. Já marquei para o próximo mês! Indico de olhos fechados.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div>
+            <div class="testi-name">Camila R.</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-q">"</div>
+        <p class="testi-text">Buscava um studio que entendesse meu estilo, e encontrei ai. O cuidado com os detalhes é incomparável. Minhas unhas nunca estiveram tão bonitas.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div>
+            <div class="testi-name">Júlia T.</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BOOKING CTA ════════════════════════════════════════════════════ -->
+<section class="booking">
+  <div class="booking-deco-l"></div>
+  <div class="booking-deco-r"></div>
+  <div class="wrap">
+    <p class="booking-eye reveal">Pronta para transformar suas unhas?</p>
+    <h2 class="reveal">Agende agora<br><em>e surpreenda-se</em></h2>
+    <p class="booking-sub reveal">Vagas limitadas. Garanta seu horário pelo WhatsApp e receba atendimento personalizado desde o primeiro contato.</p>
+    <div class="booking-actions reveal">
+      <!-- CONFIGURAÇÃO: troque pelo seu número -->
+      <a href="https://wa.me/5521979834983?text=Olá!%20Gostaria%20de%20agendar%20no%20Âmbar%20Nails." target="_blank" rel="noopener" class="btn-wp">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <!-- CONFIGURAÇÃO: troque pelo seu @ do Instagram -->
+      <a href="https://instagram.com/apxsites" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Seguir no Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOCATION ═══════════════════════════════════════════════════════ -->
+<section class="location" id="localizacao">
+  <div class="wrap">
+    <div class="location-info reveal-left">
+      <span class="tag">Onde nos encontrar</span>
+      <div class="rule"><span class="rule-dot"></span></div>
+      <h2>Venha nos <em>visitar</em></h2>
+      <p>Nosso studio foi projetado para oferecer conforto e sofisticação desde a entrada. Um ambiente pensado para você se sentir especial durante todo o atendimento.</p>
+      <div class="location-details">
+        <div class="loc-row">
+          <div class="loc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="loc-txt">
+            <!-- CONFIGURAÇÃO: coloque seu endereço -->
+            Av. das Américas, 123 — Recreio dos Bandeirantes
+            <span>Rio de Janeiro, RJ — CEP 00000-000</span>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <div class="loc-txt">
+            Segunda a Sexta: 9h às 19h
+            <span>Sábado: 9h às 17h</span>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.94 6.94l1.52-1.52a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="loc-txt">
+            <!-- CONFIGURAÇÃO: coloque seu número -->
+            (21) 97983-4983
+            <span>Atendimento via WhatsApp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAPA ───────────────────────────────────────────────────────────
+      COMO INCORPORAR SEU MAPA:
+      1. Acesse maps.google.com
+      2. Pesquise o endereço exato do seu studio
+      3. Clique "Compartilhar" → "Incorporar um mapa"
+      4. Copie o <iframe> e cole substituindo o abaixo
+    -->
+    <div class="map-frame reveal-right">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.5793015567!2d-43.4218846!3d-23.002492699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bdd605cd5092d%3A0xb61ab44d0569c724!2sAv.%20das%20Am%C3%A9ricas%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1775103616250!5m2!1spt-BR!2sbr"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Localização do Âmbar Nails">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SOCIAL BAR ════════════════════════════════════════════════════ -->
+<div class="social-bar">
+  <div class="wrap">
+    <p class="social-bar-msg">Siga nossa jornada e inspire-se no Instagram</p>
+    <div class="social-bar-links">
+      <!-- CONFIGURAÇÃO: troque pelo seu @ -->
+      <a href="https://instagram.com/apxsites" target="_blank" rel="noopener" class="social-link-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @ambar.nails
+      </a>
+      <!-- CONFIGURAÇÃO: troque pelo seu número -->
+      <a href="https://wa.me/555521979834983?text=Olá!%20Gostaria%20de%20agendar%20no%20Âmbar%20Nails." target="_blank" rel="noopener" class="social-link-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Agendar
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-logo">Âmbar <span>Nails</span></div>
+    <p class="footer-tag">Studio de Nail Design</p>
+    <div class="footer-line"></div>
+    <div class="footer-social">
+      <!-- CONFIGURAÇÃO: troque pelo seu @ -->
+      <a href="https://instagram.com/apxsites" target="_blank" rel="noopener" class="footer-s-btn" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <!-- CONFIGURAÇÃO: troque pelo seu número -->
+      <a href="https://wa.me/5521979834983" target="_blank" rel="noopener" class="footer-s-btn" aria-label="WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </a>
+    </div>
+    <p class="footer-copy">&copy; 2024 Âmbar Nails — Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<!-- ══ SCRIPTS ════════════════════════════════════════════════════ -->
+<script>
+/* ── cursor glow ── */
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+
+/* ── navbar scroll ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), {passive:true});
+
+/* ── mobile menu ── */
+const burger = document.getElementById('navBurger');
+const navList = document.getElementById('navList');
+burger.addEventListener('click', () => navList.classList.toggle('open'));
+navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+/* ── scroll reveal ── */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const delay = e.target.dataset.delay || 0;
+      setTimeout(() => e.target.classList.add('visible'), delay);
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 80;
+  revealObserver.observe(el);
+});
+
+/* ── vertical carousel ── */
+(function() {
+  const track = document.getElementById('carouselTrack');
+  if (!track) return;
+
+  const slides  = track.querySelectorAll('.carousel-slide');
+  const total   = slides.length;
+  const slideH  = 420;
+  let   current = 0;
+
+  function goTo(idx) {
+    current = ((idx % total) + total) % total;
+    track.style.transform = `translateY(${-current * slideH}px)`;
+  }
+
+  /* touch/drag support */
+  let startY = 0;
+  track.parentElement.addEventListener('touchstart', e => startY = e.touches[0].clientY, {passive:true});
+  track.parentElement.addEventListener('touchend', e => {
+    const diff = startY - e.changedTouches[0].clientY;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  /* auto-advance every 4s */
+  setInterval(() => goTo(current + 1), 4000);
+})();
+</script>
+</body>
+</html>
