@@ -95,6 +95,7 @@ a{text-decoration:none;color:inherit}
 }
 .wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(37,211,102,.5)}
 .wa-float svg{flex-shrink:0}
+@media(max-width:1024px){.wa-float{display:none}}
 
 /* pulse ring */
 .wa-float::before{
@@ -697,11 +698,26 @@ footer{background:var(--dark);padding:5rem 0 2.5rem;text-align:center}
    RESPONSIVE
 ══════════════════════════════════════════════════════════ */
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr;grid-template-rows:auto}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto auto}
   .hero-right{
-    height:350px;
+    order:-1;
+    height:auto;
+    background:linear-gradient(180deg,var(--dark) 0%,var(--dark) 100%);
   }
-  .hero-left{padding:9rem 2.5rem 5rem}
+  .hero-right::before{display:none}
+  .hero-right-photo{
+    position:relative;
+    background:transparent;
+    display:flex;align-items:flex-end;justify-content:center;
+    padding-top:5rem;
+  }
+  .hero-right-photo img{
+    width:70%;height:auto;object-fit:contain;object-position:bottom center;
+  }
+  .hero-photo-badge{display:none}
+  .hero-deco{display:none}
+  .hero-left{padding:3rem 2.5rem 5rem}
+  .hero-left::after{display:none}
   .about .wrap{grid-template-columns:1fr}
   .about-mosaic{grid-template-rows:220px 180px;grid-template-columns:1fr 1fr}
   .about-mosaic-item:nth-child(1){grid-row:span 1}
